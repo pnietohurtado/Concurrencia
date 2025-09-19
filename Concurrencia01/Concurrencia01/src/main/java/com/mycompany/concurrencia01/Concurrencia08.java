@@ -39,7 +39,11 @@ public class Concurrencia08 {
         
     }
     
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException 
+            /*En este ejemplo podemos ver como el mismo hilo es usado para todos 
+            los submit, por ello es como si usaramos una única cajera para atender 
+            en plena hora punta*/
+    {
         System.out.println("Hilo actual : " + Thread.currentThread().getName());
         var service = Executors.newSingleThreadExecutor(); // El executor service es su propio hilo y nunca va a parar 
         
