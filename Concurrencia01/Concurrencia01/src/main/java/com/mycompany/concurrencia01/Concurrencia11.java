@@ -7,6 +7,8 @@ package com.mycompany.concurrencia01;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,8 +34,14 @@ public class Concurrencia11 {
         
     }
     
-    public static void main(String[] args) {
-        Runnable r = () -> accederAlRecurso(); 
+    public static void main(String[] args) throws InterruptedException{
+        Runnable r = () -> {
+            try {
+                accederAlRecurso();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Concurrencia11.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }; 
         Thread t1 = new Thread(r); 
         Thread t2 = new Thread(r); 
         t1.start(); 
